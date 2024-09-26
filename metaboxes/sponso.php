@@ -13,17 +13,19 @@ class SponsoMetabox
         add_action('save_post', [self::class, 'save']);
     }
 
-    public static function add()
+    public static function add($postType, $post)
     {
-        add_meta_box(self::META_KEY, 'Sponsoring', [self::class, 'render'], 'post', 'side');
+        if ($postType === 'post' && current_user_can('publish_posts', $post)) {
+            add_meta_box(self::META_KEY, 'Sponsoring', [self::class, 'render'], 'post', 'side');
+        }
     }
     public static function save($post)
     {
         if (
             wp_verify_nonce($_POST[self::NONCE], self::NONCE) // CSRF TOKEN
-            && array_key_exists(self::META_KEY, $_POST) 
+            && array_key_exists(self::META_KEY, $_POST)
             && current_user_can('edit_post', $post)
-            ) {
+        ) {
             if ($_POST[self::META_KEY] === '0') {
                 delete_post_meta($post, self::META_KEY);
             } else {
