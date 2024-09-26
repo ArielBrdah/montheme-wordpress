@@ -5,21 +5,21 @@
 
     <!-- Articles Start -->
 
-    <div class="h2 fw-bolder text-gray">
+    <div class="display-2 fw-bolder text-gray my-4">
         Mes articles
     </div>
      
     <?php if(have_posts()) : ?>
 
-        <div class="row">
+        <div class="row d-flex align-items-center justify-content-stretch" style="height: 600px;">
             <?php while(have_posts()): the_post(); ?>
-            <div class="col-12 col-md-4 col-lg-3">
-                <div class="card shadow border-0" style="width: 18rem;">
-                    <?php the_post_thumbnail('medium', ['class' => 'card-img-top', 'alt'=>'']); ?>
+            <div class="col-12 col-md-4 col-lg-3 " >
+                <div class="card shadow border-0" style="width: 18rem; min-height:320px;">
+                    <?php the_post_thumbnail('card-header', ['class' => 'card-img-top', 'alt'=>'']); ?>
                     <div class="card-body">
                         <h5 class="card-title"><?php the_title() ?></h5>
                         <p class="text text-muted"><?php the_category() ?></p>
-                        <p class="card-text"><?php the_excerpt() ?></p>
+                        <?= the_excerpt() ?>
                         <a href="<?php the_permalink(); ?>" class="btn btn-link">voir l'article</a>
                     </div>
                 </div>
@@ -38,5 +38,9 @@
 
     <!-- Articles End -->
 
+    <!-- Pagination -->
+    <?= montheme_pagination(); ?>
+
+    <!-- Pagination -->
 
 <?php get_footer() ?>

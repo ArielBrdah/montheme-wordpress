@@ -1,11 +1,5 @@
 <?php get_header() ?>
 
-<!-- Title Start -->
-<div class="h1 fw-bolder">
-    <?php wp_title(); ?>
-</div>
-<!-- Title End -->
-
 
 <!-- Article Start -->
 
@@ -16,6 +10,11 @@
         <h1 class="display-2 fw-bolder mb-4">
             <?php the_title() ?>
         </h1>
+        <?php if(get_post_meta(get_the_ID(), 'montheme_sponso', true)): ?>
+            <div class="alert alert-primary">
+                Cet article est sponsorise
+            </div>
+        <?php endif; ?>
         <?php the_content() ?>
     <?php endwhile; ?>
 

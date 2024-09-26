@@ -23,9 +23,6 @@
             </div>
         </div>
 
-        <form class="d-flex my-2 my-lg-0">
-            <input type="search" class="form-control me-sm-2 rounded-0" name="Search"  aria-label="Search">
-            <button type="submit" class="btn btn-outline-primary d-inline my-2 my-sm-0 rounded-0">Search</button>
-        </form>
+      <?= get_search_form() ?> 
     </nav>
     <div class="container">
