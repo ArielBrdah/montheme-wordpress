@@ -1,7 +1,19 @@
 <?php get_header() ?>
 
 
+<?php wp_list_categories(['taxonomy' => 'sport', 'title_li'=>'']); ?>
 
+<?php 
+    $sports = get_terms(['taxonomy' => 'sport']);
+?>
+
+<ul class="nav nav-pills rounded-0 my-4">
+<?php foreach ($sports as $sport): ?>
+    <li class="nav-item">
+        <?= montheme_anchor($sport); ?>
+    </li>
+<?php endforeach; ?>
+</ul>
 
     <!-- Articles Start -->
 
@@ -14,15 +26,7 @@
         <div class="row d-flex align-items-center justify-content-stretch" style="height: 600px;">
             <?php while(have_posts()): the_post(); ?>
             <div class="col-12 col-md-4 col-lg-3 " >
-                <div class="card shadow border-0" style="width: 18rem; min-height:320px;">
-                    <?php the_post_thumbnail('card-header', ['class' => 'card-img-top', 'alt'=>'']); ?>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php the_title() ?></h5>
-                        <p class="text text-muted"><?php the_category() ?></p>
-                        <?= the_excerpt() ?>
-                        <a href="<?php the_permalink(); ?>" class="btn btn-link">voir l'article</a>
-                    </div>
-                </div>
+               <?php require('partials/post.php'); ?>
             </div>
             
             <?php endwhile; ?>

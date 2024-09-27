@@ -1,5 +1,6 @@
 <?php
-
-/***
- * Template name: Page avec banniere
+/**
+ * Template Name: Banner Template
  */
+
+ echo "Ceci est le theme Banner Template";

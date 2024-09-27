@@ -9,12 +9,13 @@ class SponsoMetabox
 
     public static function register()
     {
-        add_action('add_meta_boxes', [self::class, 'add']);
+        add_action('add_meta_boxes', [self::class, 'add'],10,2);
         add_action('save_post', [self::class, 'save']);
     }
 
     public static function add($postType, $post)
     {
+        // security only admin can sponso a post
         if ($postType === 'post' && current_user_can('publish_posts', $post)) {
             add_meta_box(self::META_KEY, 'Sponsoring', [self::class, 'render'], 'post', 'side');
         }
