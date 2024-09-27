@@ -9,7 +9,7 @@ function montheme_anchor($item)
 {
     $href = "href='" . get_term_link($item) . "'";
     $active = is_tax('sport', $item->term_id) ? 'active rounded-0' : '';
-    $class = "class='nav-link $active'";
+    $class = "class=' p-2 px-3 nav-link $active'";
     $label = $item->name;
     return "<a $href $class>$label</a>";
 }
@@ -101,6 +101,16 @@ function montheme_init()
         'show_in_rest' => true,
         'show_admin_column' => true
     ]);
+    register_post_type('bien',[
+        'label' => 'Bien',
+        'public' => true,
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-building',
+        'supports' => ['title','editor','thumbnail'],
+        'show_in_rest' => true,
+        'has_archive' => true
+
+    ]);
 }
 
 
@@ -117,5 +127,7 @@ add_filter('the_excerpt',  'montheme_the_excerpt');
 // add_action('save_post', 'montheme_save_sponso');
 
 require_once('metaboxes/sponso.php');
+require_once('options/agence.php');
 
 SponsoMetabox::register();
+AgenceMenuPage::register();

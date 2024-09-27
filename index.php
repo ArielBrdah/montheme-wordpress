@@ -1,7 +1,7 @@
 <?php get_header() ?>
 
 
-<?php wp_list_categories(['taxonomy' => 'sport', 'title_li'=>'']); ?>
+<?php // wp_list_categories(['taxonomy' => 'sport', 'title_li'=>'']); ?>
 
 <?php 
     $sports = get_terms(['taxonomy' => 'sport']);
@@ -16,10 +16,6 @@
 </ul>
 
     <!-- Articles Start -->
-
-    <div class="display-2 fw-bolder text-gray my-4">
-        Mes articles
-    </div>
      
     <?php if(have_posts()) : ?>
 

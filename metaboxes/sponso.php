@@ -23,8 +23,8 @@ class SponsoMetabox
     public static function save($post)
     {
         if (
-            wp_verify_nonce($_POST[self::NONCE], self::NONCE) // CSRF TOKEN
-            && array_key_exists(self::META_KEY, $_POST)
+            array_key_exists(self::META_KEY, $_POST)
+            && wp_verify_nonce($_POST[self::NONCE], self::NONCE)
             && current_user_can('edit_post', $post)
         ) {
             if ($_POST[self::META_KEY] === '0') {
