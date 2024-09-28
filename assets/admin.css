@@ -1,0 +1,16 @@
+.manage-column.column-thumbnail {
+    width: 150px;
+}
+.sponso.column-sponso .bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+ 
+}
+.sponso.column-sponso .bullet-no {
+   background: lightcoral;
+}
+
+.sponso.column-sponso .bullet-yes {
+    background: lightgreen;
+}
