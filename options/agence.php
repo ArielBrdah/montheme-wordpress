@@ -10,8 +10,9 @@ class AgenceMenuPage
         add_action('admin_enqueue_scripts', [self::class, 'registerScripts']);
     }
 
-    public static function registerScripts()
+    public static function registerScripts($suffix)
     {
+        if( $suffix !== 'settings_page_agence_options') return;
         wp_register_style('flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css', [], false);
         wp_register_script('flatpickr', 'https://cdn.jsdelivr.net/npm/flatpickr', [], false, true);
         wp_enqueue_script('montheme_admin', get_template_directory_uri() . '/assets/admin.js', ['flatpickr'], false, true);
@@ -36,7 +37,7 @@ class AgenceMenuPage
 
         add_settings_section('agence_option_date', 'Date d\'ouverture', function () {
         ?>
-            <input type="text" class="montheme_datepicker" name="agence_date" value="<?php get_option('agence_date'); ?>" />
+            <input type="text" class="montheme_datepicker" name="agence_date" value="<?= esc_html(get_option('agence_date')); ?>" />
         <?php
         }, self::GROUP, 'agence_options_section');
     }
