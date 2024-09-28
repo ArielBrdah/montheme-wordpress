@@ -30,8 +30,11 @@ function montheme_register_assets()
 {
     wp_register_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
     wp_register_script('bootstrapjs', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js', [], null, true);
+    wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js', [], null, true);
     wp_enqueue_style('bootstrap');
     wp_enqueue_script('bootstrapjs');
+    wp_enqueue_script('jquery');
+
 }
 
 function montheme_title()
