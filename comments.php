@@ -1,5 +1,7 @@
 <?php
 
+use MonTheme\CommentWalker;
+
 $count = absint(get_comments_number());
 
 ?>
@@ -13,6 +15,6 @@ $count = absint(get_comments_number());
 <?php comment_form(['title_reply' => '']) ?>
 <?php endif; ?>
 
-<?php wp_list_comments(['style' => 'div']) ?>
+<?php wp_list_comments(['style' => 'div', 'walker' => new CommentWalker()]) ?>
 
 <?php paginate_comments_links() ?>

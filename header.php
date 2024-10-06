@@ -10,13 +10,13 @@
 
 <body>
 
-<div class="bg-light">
+<div class="bg-light" style="background-color: <?= get_theme_mod('header_background'); ?>!important;">
 
-    <nav class="navbar navbar-light text-dark navbar-expand-lg container p-4 px-5 ">
+    <nav class="navbar navbar-light text-dark navbar-expand-lg container p-4 px-5 " >
         <div class="container-fluid">
             <a class="navbar-brand fw-bolder" href="#">
                 <?php bloginfo('name'); ?>
-            </a>
+                            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

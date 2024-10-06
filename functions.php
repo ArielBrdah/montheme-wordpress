@@ -1,5 +1,7 @@
 <?php
 
+require_once('walker/CommentWalker.php');
+
 /**
  * @description: return customised anchor for taxonomy menu  
  * @return string
@@ -19,6 +21,7 @@ function montheme_supports()
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
+    add_theme_support('html5');
     add_theme_support('page-attributes');
     register_nav_menu('header', 'En tete du menu');
     register_nav_menu('footer', 'Pied de page');
@@ -221,3 +224,9 @@ HTML;
 
     return $fields;
 });
+
+
+add_action('after_switch_theme', 'flush_rewrite_rules');
+add_action('switch_theme', 'flush_rewrite_rules');
+
+require_once('options/apparence.php');
