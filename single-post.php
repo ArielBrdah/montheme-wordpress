@@ -8,8 +8,10 @@
     <?php while (have_posts()): the_post(); ?>
 
 
-    <img src="<?php the_post_thumbnail_url(); ?>" alt="">
-    <div class="row g-5">
+    <div class="mb-3 w-100 overflow-hidden position-relative" style="max-height: 300px;height: 300px; min-width: 100%;">
+        <img class="position-absolute" style="transform: translate(-50px, -356px);object-fit: cover!important; width: 100%!important; object-position: center;" src="<?php the_post_thumbnail_url(); ?>" alt="">
+    </div>
+    <div class="container row g-5">
         <div class="col-md-8">
           <h3 class="pb-4 mb-4 fst-italic border-bottom">
             <?php the_title();  ?>
@@ -58,7 +60,11 @@
 
 
 
-
+<?php
+if (comments_open() || get_comments_number()) {
+    comments_template();
+}
+?>
 
 
 

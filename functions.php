@@ -34,7 +34,6 @@ function montheme_register_assets()
     wp_enqueue_style('bootstrap');
     wp_enqueue_script('bootstrapjs');
     wp_enqueue_script('jquery');
-
 }
 
 function montheme_title()
@@ -104,12 +103,12 @@ function montheme_init()
         'show_in_rest' => true,
         'show_admin_column' => true
     ]);
-    register_post_type('bien',[
+    register_post_type('bien', [
         'label' => 'Bien',
         'public' => true,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-building',
-        'supports' => ['title','editor','thumbnail'],
+        'supports' => ['title', 'editor', 'thumbnail'],
         'show_in_rest' => true,
         'has_archive' => true
 
@@ -135,7 +134,7 @@ require_once('options/agence.php');
 SponsoMetabox::register();
 AgenceMenuPage::register();
 
-add_filter('manage_bien_posts_columns', function ($columns){ 
+add_filter('manage_bien_posts_columns', function ($columns) {
     return [
         'cb' => $columns['cb'],
         'thumbnail' => 'Miniature',
@@ -145,46 +144,48 @@ add_filter('manage_bien_posts_columns', function ($columns){
 });
 
 add_filter('manage_bien_posts_custom_column', function ($column, $postId) {
-    if($column === 'thumbnail') the_post_thumbnail('thumbnail', $postId);
+    if ($column === 'thumbnail') the_post_thumbnail('thumbnail', $postId);
 }, 10, 2);
 
 
-add_action('admin_enqueue_scripts', function() {
-    wp_enqueue_style('admin_montheme', get_template_directory_uri().'/assets/admin.css');
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style('admin_montheme', get_template_directory_uri() . '/assets/admin.css');
 });
 
 
-add_filter('manage_post_posts_columns', function ($columns){ 
+add_filter('manage_post_posts_columns', function ($columns) {
     return [
         ...$columns,
-        'sponso' => 'sponso' 
-   ];
+        'sponso' => 'sponso'
+    ];
 });
 
 add_filter('manage_post_posts_custom_column', function ($column, $postId) {
-    if($column === 'sponso') {
+    if ($column === 'sponso') {
         $checked = 'yes';
         if (!get_post_meta($postId, SponsoMetabox::META_KEY, true)) $checked = 'no';
         else $checked = 'yes';
-        
-        echo "<div class='bullet bullet-".$checked."'></div>";
+
+        echo "<div class='bullet bullet-" . $checked . "'></div>";
     }
 }, 10, 2);
 
-function montheme_pre_get_posts($query) {
-   ?>
-   <pre>
-    <?php 
-//        var_dump($query);
-  //      die(); 
+function montheme_pre_get_posts($query)
+{
+?>
+    <pre>
+    <?php
+    //        var_dump($query);
+    //      die(); 
     ?>
    </pre>
-   <?php 
+<?php
 }
 // add_action('pre_get_posts','montheme_pre_get_posts');
 
 require_once('widgets/YoutubeWidget.php');
-function montheme_register_widget () {
+function montheme_register_widget()
+{
     register_widget(YoutubeWidget::class);
     register_sidebar([
         'id' => 'homepage',
@@ -197,3 +198,26 @@ function montheme_register_widget () {
 }
 add_action('widgets_init', 'montheme_register_widget');
 
+
+add_filter('comment_form_default_fields', function ($fields) {
+    foreach ([['email','email'], ['name','author'], ['website','url'],['comment','comment']] as $key) {
+
+        if($key[0] == 'comment') {
+            $fields[$key[1]] = <<<HTML
+    <div class="form-group">
+        <label for="${key[1]}" class="form-label text-capitalize">${key[0]}</label>
+        <textarea class="form-control" name="${key[1]}" id="${key[1]}" required>
+    </div>  
+HTML;
+            continue;
+        }
+        $fields[$key[1]] = <<<HTML
+    <div class="form-group">
+        <label for="${key[1]}" class="form-label text-capitalize">${key[0]}</label>
+        <input type="text" class="form-control" name="${key[1]}" id="${key[1]}" required>
+    </div>  
+HTML;
+    }
+
+    return $fields;
+});
