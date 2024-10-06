@@ -10,7 +10,9 @@
 
 <body>
 
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg bg-body-dark p-4 px-5 ">
+<div class="bg-light">
+
+    <nav class="navbar navbar-light text-dark navbar-expand-lg container p-4 px-5 ">
         <div class="container-fluid">
             <a class="navbar-brand fw-bolder" href="#">
                 <?php bloginfo('name'); ?>
@@ -25,4 +27,5 @@
 
       <?= get_search_form() ?> 
     </nav>
+</div>
     <div class="container">

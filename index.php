@@ -42,5 +42,5 @@
     <?= montheme_pagination(); ?>
 
     <!-- Pagination -->
-
+    
 <?php get_footer() ?>
