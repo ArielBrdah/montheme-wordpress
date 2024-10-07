@@ -1,5 +1,10 @@
 <?php
 
+require_once('metaboxes/sponso.php');
+require_once('options/agence.php');
+require_once('options/cron.php');
+
+
 require_once('walker/CommentWalker.php');
 
 /**
@@ -130,9 +135,6 @@ add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
 add_filter('the_excerpt',  'montheme_the_excerpt');
 // add_action('add_meta_boxes', 'montheme_add_custom_box');
 // add_action('save_post', 'montheme_save_sponso');
-
-require_once('metaboxes/sponso.php');
-require_once('options/agence.php');
 
 SponsoMetabox::register();
 AgenceMenuPage::register();
