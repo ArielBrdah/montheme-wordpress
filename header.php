@@ -10,7 +10,7 @@
 
 <body>
 
-<div class="bg-light" style="background-color: <?= get_theme_mod('header_background'); ?>!important;">
+<div class="bg-light bg-header" style="background-color: <?= get_theme_mod('header_background'); ?>!important;">
 
     <nav class="navbar navbar-light text-dark navbar-expand-lg container p-4 px-5 " >
         <div class="container-fluid">
