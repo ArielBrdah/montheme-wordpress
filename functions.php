@@ -237,3 +237,19 @@ require_once('options/apparence.php');
 add_action('after_setup_theme', function () {
     load_theme_textdomain('montheme', get_template_directory().'/languages');
 });
+
+
+/**
+ * @var wpdb $wpdb
+ */
+
+// global $wpdb;
+// $tag="\"tag1";
+// 
+// $query      = $wpdb->prepare("SELECT name FROM {$wpdb->terms} WHERE tag=%s",[$tag]);
+// $results    = $wpdb->get_results($query);
+// 
+// echo "<pre>";
+// var_dump($results);
+// echo "</pre>";
+// die();
