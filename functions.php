@@ -238,6 +238,48 @@ add_action('after_setup_theme', function () {
     load_theme_textdomain('montheme', get_template_directory().'/languages');
 });
 
+add_action ( 'rest_api_init', function() {
+    register_rest_route('montheme/v1', '/demo/(?P<slug>[a-zA-Z0-9-]+)', 
+        [ 
+            'methods' => 'GET', 
+            'callback' => function(WP_REST_Request $request) {
+                $response = new WP_REST_Response(['succcess'=> 'Youpiiii !']);
+                $response->set_status(201);
+                $id = $request->get_query_params('id');
+                $slug = $request->get_param('slug');
+                return $response;
+            }
+        ]);
+    register_rest_route('montheme/v1', '/posts/(?P<id>\d+)', 
+        [ 
+            'methods' => 'GET', 
+            'callback' => function(WP_REST_Request $request) {
+                
+                $id = $request->get_param('id');
+                $post = get_post($id);
+                $response = new WP_REST_Response(['title' => $post->post_title, 'content' => $post->post_content ]);
+                $response->set_status(201);
+                return $response;
+                },
+            'permission_callback' => function( ){
+                return current_user_can('edit_posts');
+            }
+        ]);
+});
+
+
+add_filter('rest_authentication_errors', function ($result) {
+  global $wp;
+  if(strpos( $wp->query_vars['rest_route'], 'montheme/v1' ) !== false){
+    return true;
+  }
+  
+   return $result;
+}, 9);
+
+
+
+
 
 /**
  * @var wpdb $wpdb
